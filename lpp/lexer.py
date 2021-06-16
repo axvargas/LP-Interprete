@@ -1,5 +1,8 @@
 from re import match
-from lpp.token import Token, TokenType
+from lpp.token import (
+    Token, 
+    TokenType
+)
 
 
 class Lexer:

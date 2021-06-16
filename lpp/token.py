@@ -1,4 +1,8 @@
-from enum import auto, Enum, unique
+from enum import (
+    auto,
+    Enum,
+    unique
+)
 from typing import NamedTuple
 
 
@@ -26,5 +30,3 @@ class Token(NamedTuple):
 
     def __str__(self) -> str:
         return f'Type: {self.token_type}, Literal: {self.literal}'
-
-    

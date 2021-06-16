@@ -1,8 +1,11 @@
 from unittest import TestCase
 
 from typing import List
-from lpp.token import Token, TokenType
 from lpp.lexer import Lexer
+from lpp.token import (
+    Token,
+    TokenType
+)
 
 
 class LexerTest(TestCase):
