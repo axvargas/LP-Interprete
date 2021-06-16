@@ -20,7 +20,7 @@ class TokenType(Enum):
     LPAREN = auto()
     PLUS = auto()
     RBRACE = auto()
-    LPAREN = auto()
+    RPAREN = auto()
     SEMICOLON = auto()
 
 
