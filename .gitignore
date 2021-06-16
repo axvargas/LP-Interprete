@@ -2,7 +2,6 @@
 *.swp
 
 .mypy_cache/
-mypy.ini
 __pycache__/
 venv/
 .vscode
