@@ -14,7 +14,7 @@ def main() -> None:
 Bienvenido a MATTU. L v.0.1 REPL el lenguaje de programación en español
 
 
-Este es la version 0.1 del REPL(Read Evaluate Print Loop) del lenguaje
+Esta es la version 0.1 del REPL(Read Evaluate Print Loop) del lenguaje
 de programación MATTU. L, aquí puedes escribir sentencias del lenguaje
 y el REPL las descompondrá en los distintos Tokens que el Lexer del 
 lenguaje encuentre en tu sentencia
