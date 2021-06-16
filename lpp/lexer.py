@@ -51,10 +51,9 @@ class Lexer:
 
     def _is_letter(self, character: str) -> bool:
         return bool(match(r'^[a-záéíóúñA-ZÁÉÍÓÚÑ_]$', character))
-    
+
     def _is_number(self, character: str) -> bool:
         return bool(match(r'^\d$', character))
-    
 
     def _read_character(self) -> None:
         if self._read_position >= len(self._source):
@@ -80,5 +79,5 @@ class Lexer:
         return self._source[initial_position: self._position]
 
     def _skip_whitespace(self) -> None:
-        if match(r'^\s$', self._character):
+        while match(r'^\s$', self._character):
             self._read_character()
