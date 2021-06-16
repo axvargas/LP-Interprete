@@ -66,7 +66,10 @@ class Lexer:
             return Token(token_type, literal)
         elif self._is_number(self._character):
             literal = self._read_number()
-            return Token(TokenType.INT, literal)
+            if match(r'^\d+$', literal):
+                return Token(TokenType.INT, literal)
+            else:
+                return Token(TokenType.ILLEGAL, literal)
         else:
             token = Token(TokenType.ILLEGAL, self._character)
 
@@ -96,14 +99,14 @@ class Lexer:
 
     def _read_identifier(self) -> str:
         initial_position = self._position
-        while self._is_letter(self._character):
+        while self._is_letter(self._character) or self._is_number(self._character):
             self._read_character()
 
         return self._source[initial_position: self._position]
 
     def _read_number(self) -> str:
         initial_position = self._position
-        while self._is_number(self._character):
+        while self._is_number(self._character) or self._is_letter(self._character):
             self._read_character()
 
         return self._source[initial_position: self._position]

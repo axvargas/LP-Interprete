@@ -80,16 +80,36 @@ class LexerTest(TestCase):
         self.assertEqual(tokens, expected_tokens)
 
     def test_assignment(self) -> None:
-        source: str = 'variable cinco = 5;'
+        source: str = '''
+            variable cinco = 5;
+            variable cinco_5 = 5;
+            variable _5 = 5;
+            variable cinco5 = 5;
+        '''
         lexer: Lexer = Lexer(source)
 
         tokens: List[Token] = []
-        for _ in range(5):
+        for _ in range(20):
             tokens.append(lexer.next_token())
 
         expected_tokens: List[Token] = [
             Token(TokenType.LET, 'variable'),
             Token(TokenType.IDENT, 'cinco'),
+            Token(TokenType.ASSIGN, '='),
+            Token(TokenType.INT, '5'),
+            Token(TokenType.SEMICOLON, ';'),
+            Token(TokenType.LET, 'variable'),
+            Token(TokenType.IDENT, 'cinco_5'),
+            Token(TokenType.ASSIGN, '='),
+            Token(TokenType.INT, '5'),
+            Token(TokenType.SEMICOLON, ';'),
+            Token(TokenType.LET, 'variable'),
+            Token(TokenType.IDENT, '_5'),
+            Token(TokenType.ASSIGN, '='),
+            Token(TokenType.INT, '5'),
+            Token(TokenType.SEMICOLON, ';'),
+            Token(TokenType.LET, 'variable'),
+            Token(TokenType.IDENT, 'cinco5'),
             Token(TokenType.ASSIGN, '='),
             Token(TokenType.INT, '5'),
             Token(TokenType.SEMICOLON, ';'),
@@ -220,6 +240,32 @@ class LexerTest(TestCase):
             Token(TokenType.INT, '10'),
             Token(TokenType.L_EQ_T, '<='),
             Token(TokenType.INT, '9'),
+            Token(TokenType.SEMICOLON, ';'),
+        ]
+
+        self.assertEqual(tokens, expected_tokens)
+
+    def test_illegal_assignment(self) -> None:
+        source: str = '''
+            variable 5_cinco = 5;
+            variable 5_ = 5;
+        '''
+        lexer: Lexer = Lexer(source)
+
+        tokens: List[Token] = []
+        for _ in range(10):
+            tokens.append(lexer.next_token())
+
+        expected_tokens: List[Token] = [
+            Token(TokenType.LET, 'variable'),
+            Token(TokenType.ILLEGAL, '5_cinco'),
+            Token(TokenType.ASSIGN, '='),
+            Token(TokenType.INT, '5'),
+            Token(TokenType.SEMICOLON, ';'),
+            Token(TokenType.LET, 'variable'),
+            Token(TokenType.ILLEGAL, '5_'),
+            Token(TokenType.ASSIGN, '='),
+            Token(TokenType.INT, '5'),
             Token(TokenType.SEMICOLON, ';'),
         ]
 
